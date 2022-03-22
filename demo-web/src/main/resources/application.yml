@@ -1,0 +1,45 @@
+#spring:
+#    application:
+#        name: demo
+spring:
+#rabbitmq配置
+    rabbitmq:
+        host: 47.99.122.255
+        port: 5672
+        username: admin
+        password: admin
+        virtualHost: /kavito
+        template:
+            retry:
+                enabled: true
+                initial-interval: 10000ms
+                max-interval: 300000ms
+                multiplier: 2
+            exchange: topic.exchange
+        publisher-confirm-type: correlated
+        publisher-returns: true
+#rabbitmq配置
+    redis:
+      host: 47.99.122.255
+      port: 6379
+      password: admin
+      jedis:
+        pool:
+          max-active: 8
+          max-idle: 500
+          min-idle: 0
+          max-wait: -1ms
+      lettuce:
+        shutdown-timeout: 0ms
+#mongodb配置
+    data:
+      mongodb:
+        uri: mongodb://47.99.122.255:27017/demo
+server:
+  port: 8088
+
+
+
+
+
+
