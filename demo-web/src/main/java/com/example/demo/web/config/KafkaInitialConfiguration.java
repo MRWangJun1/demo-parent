@@ -39,7 +39,7 @@ public class KafkaInitialConfiguration {
     }
 
     // 消息过滤器
-    @Bean(value = "kafkaListenerContainerFactory")
+    @Bean
     public ConcurrentKafkaListenerContainerFactory filterContainerFactory() {
         ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory();
         factory.setConsumerFactory(consumerFactory);
