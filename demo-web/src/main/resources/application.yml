@@ -34,10 +34,10 @@ spring:
 #mongodb配置
     data:
       mongodb:
-        uri: mongodb://47.99.122.255:27017/demo
+        uri: mongodb://47.99.122.255:27017/test
 
 server:
-  port: 8088
+  port: 80
 
 
 
