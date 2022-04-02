@@ -35,6 +35,51 @@ spring:
     data:
       mongodb:
         uri: mongodb://47.99.122.255:27017/test
+#数据库配置
+    datasource:
+      druid:
+        url: jdbc:mysql://mysql2.test.yiyaowang.com/saas_yc_cart?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+        username: saas_yc_cart
+        password: d41d8cd98f00b204
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        initial-size: 3
+        min-idle: 3
+        max-active: 100
+        max-wait: 60000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        validation-query: SELECT 1
+        test-while-idle: true
+        test-on-borrow: false
+        #      exception-sorter: true
+        test-on-return: false
+        pool-prepared-statements: true
+        filters: stat,wall,slf4j
+        max-pool-prepared-statement-per-connection-size: 20
+        connection-properties: "druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500"
+        decrypt: false
+        use-global-data-source-stat: true
+
+#mybatis配置
+
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    use-generated-keys: false
+    auto-mapping-behavior: partial
+    default-executor-type: simple
+    auto-mapping-unknown-column-behavior: warning
+    map-underscore-to-camel-case: true
+  check-config-location: true
+  mapper-locations: classpath:mapper/*.xml
+
+
+
 
 server:
   port: 80

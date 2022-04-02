@@ -1,4 +1,4 @@
-package com.example.demo.service.proxy;
+package com.example.demo.web.test;
 
 /**
  * @author : wangjun
