@@ -33,8 +33,9 @@ public class MysqlPlusTest {
         LambdaQueryWrapper<TShoppingCart> queryWrapper = Wrappers.lambdaQuery(TShoppingCart.class);
 //        queryWrapper.eq(TShoppingCart::getShoppingCartId, 41);
 
-        queryWrapper.like(TShoppingCart::getProductName, "心诚");
+//        queryWrapper.like(TShoppingCart::getProductName, "心诚");
         queryWrapper.last("limit 12");
+        queryWrapper.in(TShoppingCart::getShoppingCartId,81,83);
 
         List<TShoppingCart> list1 =iTShoppingCartService.list(queryWrapper);
 
