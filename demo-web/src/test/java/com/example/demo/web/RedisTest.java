@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RBucket;
-import org.redisson.api.RLock;
+import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,15 +48,18 @@ public class RedisTest {
         System.out.println(bucket.get());
     }
 
-
-
+    //redisson使用  https://mp.weixin.qq.com/s/lpZ7eRdImy0MyTEVH68HYw
+    @Test
     public void setInfo(){
-
-        RAtomicLong timesAtomicLong = redissonClient.getAtomicLong("name");
-
-        redissonClient.getLock("lock");
-//        timesAtomicLong.get
-
-
+        RList<String> nameList = redissonClient.getList("nameList");
+        nameList.clear();
+        nameList.add("bingo");
+        nameList.add("yanglbme");
+        nameList.add("https://github.com/yanglbme");
+        nameList.remove(-1);
+        boolean contains = nameList.contains("yanglbme");
+        System.out.println("List size: " + nameList.size());
+        System.out.println("Is list contains name 'yanglbme': " + contains);
+        nameList.forEach(System.out::println);
     }
 }
