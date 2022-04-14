@@ -1,5 +1,6 @@
 package com.example.demo.web.controller.validTest;
 
+import com.example.demo.web.limit.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -27,8 +28,8 @@ public class CommonControllerAdvice {
 
     @ModelAttribute("myUser")
     public User getUser(HttpServletRequest request, HttpServletResponse response) {
-        String userId = request.getHeader("userId");
-        String userName = request.getHeader("userName");
+        String userId = request.getHeader("userId") == null ? "1" : request.getHeader("userId");
+        String userName = request.getHeader("userName")== null ? "1" : request.getHeader("userName");
         return User.builder().userId(Integer.valueOf(userId)).userName(userName).build();
     }
 
@@ -55,6 +56,14 @@ public class CommonControllerAdvice {
             String errMsg = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(","));
             return errMsg;
         }
+        if (e instanceof BusinessException) {
+            BusinessException bindException = (BusinessException) e;
+            return bindException.getErrorMsg();
+        }
+
+
+
+
         log.error("request fail !", e);
         return "服务异常";
     }
